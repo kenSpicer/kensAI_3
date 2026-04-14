@@ -28,10 +28,9 @@ response = client.models.generate_content(
 if not response.usage_metadata:
     raise RuntimeError("Gemini API response appears to be malformed")
 
-
-#print("User prompt", parser.user_prompt)
-#print("User prompt", response.usage_metadata.user_prompt)    
-print("Prompt tokens:", response.usage_metadata.prompt_token_count)
-print("Response tokens:", response.usage_metadata.candidates_token_count)
+if args.verbose:
+    print("User prompt:", args.user_prompt)
+    print("Prompt tokens:", response.usage_metadata.prompt_token_count)
+    print("Response tokens:", response.usage_metadata.candidates_token_count)
 
 print(response.text)
